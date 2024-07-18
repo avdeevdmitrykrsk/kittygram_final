@@ -1,0 +1,33 @@
+version: '3'
+
+volumes:
+  pg_data:
+  static:
+  media:
+
+services:
+  db:
+    env_file: .env
+    image: postgres:13
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - media:/media
+  backend:
+    image: dockerbyhomie/kittygram_backend
+    env_file: .env
+    volumes:
+      - media:/media
+      - static:/backend_static
+  frontend:
+    env_file: .env
+    image: dockerbyhomie/kittygram_frontend
+    command: cp -r /app/build/. /frontend_static/
+    volumes:
+      - static:/frontend_static
+  gateway:
+    image: dockerbyhomie/kittygram_gateway
+    env_file: .env
+    ports:
+      - 8080:80
+    volumes:
+      - static:/staticfiles
