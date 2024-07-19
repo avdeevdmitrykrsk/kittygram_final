@@ -160,5 +160,5 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: Deploy to ${{ github.action_repository }} success by Author - ${{ github.actor }}.
-            Checkout commit https://github.com/${{ github.repository }}/commit/${{github.sha}}.
+        message: Deploy to ${{ github.repository }} success by Author - ${{ github.actor }}.
+                 Checkout commit https://github.com/${{ github.repository }}/commit/${{github.sha}}.
